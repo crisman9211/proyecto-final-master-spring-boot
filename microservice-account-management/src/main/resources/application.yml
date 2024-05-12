@@ -1,0 +1,46 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: account-service
+  config:
+    import: "optional:configserver:http://localhost:8082"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/accountdb
+    username: postgres
+    password: 921124
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+# Managment Actuator
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, info, beans, threaddump, mappings
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      enabled: true
+    info:
+      enabled: true
+    beans:
+      enabled: true
+    threaddump:
+      enabled: true
+    mappings:
+      enabled: true
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
