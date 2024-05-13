@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  account-service:
+    build: .
+    ports:
+      - "9090:9090"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+    links:
+      - "db:postgres"
+  db:
+    image: postgres:13
+    restart: always
+    hostname: postgres
+    ports:
+      - "6379:6379"
