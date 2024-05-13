@@ -14,3 +14,6 @@ services:
     hostname: postgres
     ports:
       - "6379:6379"
+    environment:
+      - "POSTGRES_PASSWORD=921124"
+      - "POSTGRES_DB=accountdb"
